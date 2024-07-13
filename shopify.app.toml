@@ -7,11 +7,12 @@ application_url = "https://shopify.dev/apps/default-app-home"
 embedded = true
 
 [build]
+dev_store_url = "learntest12324.myshopify.com"
 include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = ""
+scopes = "write_cart_transforms"
 
 [auth]
 redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]

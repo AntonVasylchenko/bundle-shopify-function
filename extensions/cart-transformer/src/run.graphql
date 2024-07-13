@@ -3,6 +3,34 @@ query RunInput {
     lines {
       id
       quantity
+      cost {
+        amountPerQuantity {
+          amount
+          currencyCode
+        }
+      }
+      mainId: attribute(key: "_maidId") {
+        value
+      }
+      bundleId: attribute(key: "_bundleId") {
+        value
+      }
+      typeOperation: attribute(key: "_typeOperation") {
+        value
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          title
+          product {
+            bundleList: metafield(namespace: "list", key: "bundle_list") {
+              type
+              value
+            }
+          }
+        }
+      }
     }
   }
 }
