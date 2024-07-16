@@ -12,13 +12,20 @@ const NO_CHANGES: FunctionRunResult = {
 };
 
 export function run(input: RunInput): FunctionRunResult {
-  const groupItems:Record<string, Pick<CartLine, "id" | "quantity" | "attribute">[]> = {}; 
+  const groupItems:Record<string, Pick<CartLine, "id" | "quantity" | "attribute" >[]> = {}; 
   const groupItemsExpending:Record<string, Pick<CartLine, "id" | "quantity" | "attribute">[]> = {}; 
 
 
   const itemsForMerging = input.cart.lines.filter( line => line.typeOperation?.value === "merge");
   const itemsForExpending = input.cart.lines.filter( line => line.typeOperation?.value === "expande");
-
+  const itemsForUpdate = input.cart.lines.filter((line,_index,array) => {
+    const product = (line.merchandise as ProductVariant).product;
+    if (!product.freeProduct) return;
+    const isMainInCart = array.some(item => (item.merchandise as ProductVariant).product.id === product.freeProduct.value )
+    if (isMainInCart  ) {      
+      return line
+    }
+  })
 
 
   itemsForMerging.forEach( (line) => {
@@ -64,6 +71,24 @@ export function run(input: RunInput): FunctionRunResult {
           }
         }
         return expandeOperation
+      }),
+
+      ...itemsForUpdate.map( item => {
+        const {id} = item
+
+        const updateOperation:CartOperation = {
+          update: {
+            cartLineId: id,
+            price: {
+              adjustment: {
+                fixedPricePerUnit: {
+                  amount: 0.00
+                }
+              }
+            }
+          }
+        }
+        return updateOperation
       })
       
     ]

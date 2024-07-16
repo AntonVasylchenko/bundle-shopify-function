@@ -24,6 +24,11 @@ query RunInput {
           id
           title
           product {
+            id
+            freeProduct: metafield(namespace: "free", key: "product") {
+              type
+              value
+            }
             bundleList: metafield(namespace: "list", key: "bundle_list") {
               type
               value

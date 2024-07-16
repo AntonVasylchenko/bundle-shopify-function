@@ -1,0 +1,55 @@
+{
+    "cart": {
+      "lines": [
+        {
+          "id": "gid://shopify/CartLine/53b9160c-13f3-46c3-9313-bd13d63b6170",
+          "quantity": 1,
+          "cost": {
+            "amountPerQuantity": {
+              "amount": "200.0",
+              "currencyCode": "UAH"
+            }
+          },
+          "mainId": null,
+          "bundleId": null,
+          "typeOperation": null,
+          "merchandise": {
+            "__typename": "ProductVariant",
+            "id": "gid://shopify/ProductVariant/41764408426555",
+            "title": null,
+            "product": {
+              "id": "gid://shopify/Product/7291281932347",
+              "freeProduct": null,
+              "bundleList": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/CartLine/59b64e02-e9a8-4394-be19-31c944fbde5f",
+          "quantity": 1,
+          "cost": {
+            "amountPerQuantity": {
+              "amount": "19.99",
+              "currencyCode": "UAH"
+            }
+          },
+          "mainId": null,
+          "bundleId": null,
+          "typeOperation": null,
+          "merchandise": {
+            "__typename": "ProductVariant",
+            "id": "gid://shopify/ProductVariant/41764408524859",
+            "title": null,
+            "product": {
+              "id": "gid://shopify/Product/7291281997883",
+              "freeProduct": {
+                "type": "product_reference",
+                "value": "gid://shopify/Product/7291281932347"
+              },
+              "bundleList": null
+            }
+          }
+        }
+      ]
+    }
+  }
