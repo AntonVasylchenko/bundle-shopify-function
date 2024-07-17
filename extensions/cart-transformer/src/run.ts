@@ -22,7 +22,7 @@ export function run(input: RunInput): FunctionRunResult {
     const product = (line.merchandise as ProductVariant).product;
     if (!product.freeProduct) return;
     const isMainInCart = array.some(item => (item.merchandise as ProductVariant).product.id === product.freeProduct.value )
-    if (isMainInCart  ) {      
+    if (isMainInCart && ( array.length == 1 || line.hasFree?.value == "false") ) {      
       return line
     }
   })
@@ -79,6 +79,7 @@ export function run(input: RunInput): FunctionRunResult {
         const updateOperation:CartOperation = {
           update: {
             cartLineId: id,
+            title: "Free",
             price: {
               adjustment: {
                 fixedPricePerUnit: {

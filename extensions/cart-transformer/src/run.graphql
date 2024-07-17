@@ -18,6 +18,9 @@ query RunInput {
       typeOperation: attribute(key: "_typeOperation") {
         value
       }
+      hasFree: attribute(key: "_hasFree") {
+        value
+      }
       merchandise {
         __typename
         ... on ProductVariant {
